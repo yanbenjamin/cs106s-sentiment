@@ -37,7 +37,14 @@ function updateWordMap(wordMap, tweet, tweetLabel){
     for (let word of tweetWords){
         let stemmedWord = stemmer(word);
         if (stemmedWord === ""){continue;}
-        //TODO: write your code to update wordMap here!
+        
+        if (wordMap.hasOwnProperty(stemmedWord)){ //word already in wordMap
+            wordMap[stemmedWord] += tweetLabel; // +1 if pro-refugee,
+                                                // -1 if anti-refugee
+        }
+        else{ // new word!
+            wordMap[stemmedWord] = tweetLabel;
+        }
     }
 }
 
@@ -60,9 +67,22 @@ function updateWordMap(wordMap, tweet, tweetLabel){
 function predictTweet(tweet, wordMap){
     let tweetWords = tweet.toLowerCase().split(" ");
     let tweetSentimentScore = 0;
-    //TODO: delete the line below and write your code in here!
-    return 0;
+    
+    for (let word of tweetWords){
+        let stemmedWord = stemmer(word);
+        if (wordMap.hasOwnProperty(stemmedWord)){
+            //add the word's sentiment to the tweet's total score 
+            tweetSentimentScore += wordMap[stemmedWord];
+        }
+    }
+    
+    if (tweetSentimentScore < 0){
+        return -1; // predict tweet has anti-refugee sentiment
+    }
+    return 1; //predict tweet has pro-refugee sentiment
 }
+
+/* No need to modify anything beyond this point */
 
 function trainAndEvaluateModel(){
 
