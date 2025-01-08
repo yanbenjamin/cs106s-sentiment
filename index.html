@@ -2,14 +2,28 @@
 <html>
 
     <head>
-    <script src = "trainTweets.js"></script>
-    <script src = "testTweets.js"></script>
-    <script src = "stemmer.js"></script>
-   <script src="sentiment-analysis.js"></script>
+        <meta charset = "utf-8">
+        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>
+        <link rel="stylesheet" href="style.css">
+
+        <script src = "trainTweets.js"></script>
+        <script src = "testTweets.js"></script>
+        <script src = "stemmer.js"></script>
+        <script src="graphics.js"></script>
+        <script src="sentiment-analysis.js"></script>
+        <script src="autograder.js"></script>
+
     </head>
 
     <body>
-        <h1>CS106S Week 2: Sentiment Analysis and Refugee Tweets</h1>
-        <h2>Open the Chrome Console to see the output of your assignment.js</h2>
+        <h1>🟩🟥 CS106S Week 2: Sentiment Analysis and Refugee Tweets</h1>
+        <p style = "font-size:24px">Open the Chrome Console to see model performance and run functionality tests.</p>
+        <br>
+        
+        <!-- display board for the tweets and their predicted/correct labels --> 
+        <div id = "board">
+            <!-- will be filled in programmatically by graphics.js -->
+        </div>
+
     </body>
 </html>

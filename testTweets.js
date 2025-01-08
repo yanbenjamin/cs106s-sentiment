@@ -282,5 +282,5 @@ let testTweets = [
         {
         "label": 1,
         "tweet": "anyone tryna volunteer at the refugee development center ?  ?  ?  summer apps are open easy hours making a true difference in refugee lives"
-        }
+        },
 ];

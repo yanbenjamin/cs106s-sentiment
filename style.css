@@ -1,0 +1,38 @@
+
+*{
+    font-family: 'Source Sans Pro';
+}
+
+#board{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 900px;
+}
+
+.tweet{
+    border: ridge 3px gray; 
+    border-radius: 5px; 
+    padding: 5px; 
+    margin-left: 5px; 
+    margin-right: 5px;
+    margin-bottom: 10px;
+    width: 190px;
+    text-align: center; 
+}
+
+.correct{ /* light green */
+    background-color: rgb(204, 255, 153);
+}
+
+.incorrect{ /* light red */
+    background-color: rgb(255, 210, 210);  
+}
+
+h3{
+    margin-top: 10px;
+}
+
+p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

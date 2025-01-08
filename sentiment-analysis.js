@@ -37,7 +37,9 @@ function updateWordMap(wordMap, tweet, tweetLabel){
     for (let word of tweetWords){
         let stemmedWord = stemmer(word);
         if (stemmedWord === ""){continue;}
+
         //TODO: write your code to update wordMap here!
+        
     }
 }
 
@@ -46,7 +48,7 @@ function updateWordMap(wordMap, tweet, tweetLabel){
  * use of the features in wordSentimentMap collected during training. It should add up the 
  * sentiment scores of all the words in the tweet, retrieving from wordMap.
  *
- * Then, if tweetSentimentScore < 0, predict as anti-refugee; otherwise, pro-refugee. Tweet words 
+ * Then, if tweetSentimentScore > 0, predict as pro-refugee; otherwise, anti-refugee. Tweet words 
  * not in wordSentimentMap should be ignored.  
  * ----------------------------
  * Params:
@@ -64,41 +66,34 @@ function predictTweet(tweet, wordMap){
     return 0;
 }
 
+
+/* no need to modify anything beyond this point! */
+
+let wordMap = trainAndEvaluateModel();
+
 function trainAndEvaluateModel(){
 
-    let wordMap = {};
+    let wordMap = {}; //stores each word's sentiment score, e.g., {"happy": 5, "unhappy": -4}
+
+    //loop over all tweets, and iteratively update the words' sentiment scores  
     for (let tweet of trainTweets){
         updateWordMap(wordMap, tweet.tweet, tweet.label);
     }
-    
-    let numCorrect = 0;
-    let falsePositive = 0;
-    let positive = 0; let negative = 0;
-    let falseNegative = 0;
+
+    //using wordMap, predict each tweet in the test set as pro-refugee or anti-refugee 
+    let predictedLabels = [];
+    let correctLabels = [];
     for (let tweet of testTweets){
         let predLabel = predictTweet(tweet.tweet, wordMap);
-
-        if (tweet.label === predLabel){
-            numCorrect += 1;
-        }
-        else if (predLabel === 1){
-            falsePositive += 1;
-        }
-        else{
-            falseNegative += 1;
-        }
-        if (tweet.label === 1){
-            positive += 1;
-        }
-        else{
-            negative += 1;
-        }
+        predictedLabels.push(predLabel);
+        correctLabels.push(tweet.label);
     }
-    
-    console.log("Percent Correct: ", numCorrect / testTweets.length * 100);
-    console.log("False Positive Rate: ", falsePositive / negative * 100);
-    console.log("False Negative Rate: ", falseNegative / positive * 100);
+
+    //calls function (in graphics.js) to calculate & print accuracy scores to console
+    logResults(predictedLabels, correctLabels);
+
+    //displays classification results on webpage, using function in graphics.js 
+    displayResults(predictedLabels, correctLabels)
+
     return wordMap;
 }
-
-let wordMap = trainAndEvaluateModel();
