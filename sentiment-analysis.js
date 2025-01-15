@@ -38,6 +38,7 @@ function updateWordMap(wordMap, tweet, tweetLabel){
         let stemmedWord = stemmer(word);
         if (stemmedWord === ""){continue;}
 
+        //completed TODO
         if (stemmedWord in wordMap){ //word already in wordMap
             wordMap[stemmedWord] += tweetLabel; // +1 if pro-refugee,
                                                 // -1 if anti-refugee
@@ -67,7 +68,8 @@ function updateWordMap(wordMap, tweet, tweetLabel){
 function predictTweet(tweet, wordMap){
     let tweetWords = tweet.toLowerCase().split(" ");
     let tweetSentimentScore = 0;
-    
+
+    //completed TODO
     for (let word of tweetWords){
         let stemmedWord = stemmer(word);
         if (wordMap.hasOwnProperty(stemmedWord)){
