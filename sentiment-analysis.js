@@ -39,7 +39,13 @@ function updateWordMap(wordMap, tweet, tweetLabel){
         if (stemmedWord === ""){continue;}
 
         //TODO: write your code to update wordMap here!
-        
+        if (stemmedWord in wordMap){ //word already in wordMap
+            wordMap[stemmedWord] += tweetLabel; // +1 if pro-refugee,
+                                                // -1 if anti-refugee
+        }
+        else{ // new word!
+            wordMap[stemmedWord] = tweetLabel;
+        }
     }
 }
 
