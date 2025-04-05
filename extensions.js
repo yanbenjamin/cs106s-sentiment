@@ -2,9 +2,10 @@
  * File: extensions.js
  * ----------------------------
  * Optional extension / challenge for the tweet classifier. The aim is for words that appear in 
- * more tweets (e.g., "the") to have less weight / contribution to the tweet's overall sentiment score. 
+ * more tweets (e.g., "the") to have less weight / contribution to the tweet's overall sentiment score.
+ * Word frequencies are stored in a new object called frequencyMap.
+ *
  * Your tasks are the following functions (specifications below for each):
- * 
  *    - updateWordMap: simply copy over your earlier implementation into the designated TODO space!
  *    - getUniqueWords: brief helper function to implement
  *    - updateWordFrequency: function to implement, similar in spirit to updateWordMap
@@ -61,7 +62,7 @@ function getUniqueWords(words){
  *  > tweet (string): the text of the tweet ingested to update wordMap
 
  * Returns:
- *  >  None (function should just update WordMap!)
+ *  >  None (function should just update frequencyMap!)
  */
 function updateWordFrequency(frequencyMap, tweet){
     let tweetWords = tweet.toLowerCase().split(" ");
