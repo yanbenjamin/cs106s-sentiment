@@ -72,7 +72,7 @@ function predictTweet(tweet, wordMap){
     //completed TODO
     for (let word of tweetWords){
         let stemmedWord = stemmer(word);
-        if (wordMap.hasOwnProperty(stemmedWord)){
+        if (stemmedWord in wordMap){
             //add the word's sentiment to the tweet's total score 
             tweetSentimentScore += wordMap[stemmedWord];
         }
