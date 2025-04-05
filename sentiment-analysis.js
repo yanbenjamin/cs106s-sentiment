@@ -55,7 +55,7 @@ function updateWordMap(wordMap, tweet, tweetLabel){
  * sentiment scores of all the words in the tweet, retrieving from wordMap.
  *
  * Then, if tweetSentimentScore > 0, predict as pro-refugee; otherwise, anti-refugee. Tweet words 
- * not in wordSentimentMap should be ignored.  
+ * not in wordMap should be ignored.  
  * ----------------------------
  * Params:
  *  > tweet (str): the text of the tweet we're trying to classify
