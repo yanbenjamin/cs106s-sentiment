@@ -39,8 +39,34 @@ function updateWordMap(wordMap, tweet, tweetLabel){
         if (stemmedWord === ""){continue;}
 
         //TODO: write your code to update wordMap here!
+
         
     }
+}
+
+/** Function: createWordMap
+ * This function should loop over all tweets in the training array, and leverage your
+ * helper function updateWordMap above to iteratively update the word's sentiment scores. 
+ * Sentiment scores are stored in an (initially empty) object / map called wordMap.
+ * 
+ * Tips:
+ *    - You can loop directly over the elements of an array via for (let elem of array)
+ *    - Alternatively, you can loop over indices with for (let i = 0; i < array.length; i++)
+ * -----------------------------------
+ * Params:
+ *   - trainTweets: an array where each element is a tweet object. For each tweet object, you  
+ *                  can access its string text via tweet.tweet, and its label via tweet.label.
+ * 
+ * Returns:
+ *   - An object that maps each word to its sentiment score, e.g., {"happy": 5, "unhappy": -4}
+ */
+function createWordMap(trainTweets) {
+    let wordMap = {};
+
+    /* TODO: loop over all tweets, and iteratively update the words' sentiment scores */
+
+
+    return wordMap;
 }
 
 /** Function: predictTweet
@@ -62,6 +88,7 @@ function updateWordMap(wordMap, tweet, tweetLabel){
 function predictTweet(tweet, wordMap){
     let tweetWords = tweet.toLowerCase().split(" ");
     let tweetSentimentScore = 0;
+
     //TODO: delete the line below and write your code in here!
     return 0;
 }
@@ -73,12 +100,7 @@ let wordMap = trainAndEvaluateModel();
 
 function trainAndEvaluateModel(){
 
-    let wordMap = {}; //stores each word's sentiment score, e.g., {"happy": 5, "unhappy": -4}
-
-    //loop over all tweets, and iteratively update the words' sentiment scores  
-    for (let tweet of trainTweets){
-        updateWordMap(wordMap, tweet.tweet, tweet.label);
-    }
+    let wordMap = createWordMap(trainTweets); //stores each word's sentiment score, e.g., {"happy": 5, "unhappy": -4}
 
     //using wordMap, predict each tweet in the test set as pro-refugee or anti-refugee 
     let predictedLabels = [];

@@ -25,8 +25,24 @@ function updateWordMap(wordMap, tweet, tweetLabel){
         let stemmedWord = stemmer(word);
         if (stemmedWord === ""){continue;}
 
-        //TODO: copy and paste your earlier implementation from sentiment-analysis.js here!
+        // TODO: copy and paste your earlier implementation from sentiment-analysis.js here!
+
+
+
     }
+}
+
+/** Function: createWordMap
+ * Identical to the version in sentiment-analysis.js
+ */
+function createWordMap(trainTweets) {
+    let wordMap = {};
+
+    // TODO: copy and paste your earlier implementation from sentiment-analysis.js here!
+
+
+
+    return wordMap;
 }
 
 /** Function: getUniqueWords
@@ -45,6 +61,7 @@ function updateWordMap(wordMap, tweet, tweetLabel){
 function getUniqueWords(words){
     let uniqueWords = [];
     // TODO: your code here to build up the array uniqueWords! 
+
   
     return uniqueWords;
 }
@@ -73,7 +90,29 @@ function updateWordFrequency(frequencyMap, tweet){
 
          //TODO: write your code to update frequencyMap here!
         
+
     }
+}
+
+/** Function: createFrequencyMap
+ * This function should loop over all tweets in the training array, and leverage your
+ * helper function updateWordFrequency above to iteratively update each word's frequency. 
+ * 
+ * Note: Your implementation will look quite similar to createWordMap :)
+ * -----------------------------------
+ * Params:
+ *   - trainTweets: an array where each element is a tweet object. For each tweet object, you  
+ *                  can access its string text via tweet.tweet (you won't need to use tweet.label here).
+ * 
+ * Returns:
+ *   - An object that maps each word to its frequency, e.g., {"happy": 40, "unhappy": 30, "the": 250, "rare": 2}
+ */
+function createFrequencyMap(trainTweets) {
+    let frequencyMap = {};
+
+    /* TODO: loop over all tweets, and iteratively update the words' frequencies */
+
+    return frequencyMap;
 }
 
 /** Function: predictTweet
@@ -97,6 +136,7 @@ function updateWordFrequency(frequencyMap, tweet){
 function predictTweet(tweet, wordMap, frequencyMap, numTweets){
     let tweetWords = tweet.toLowerCase().split(" ");
     let tweetSentimentScore = 0;
+    
     //TODO: delete the line below and write your code in here!
     return 0;
 }
@@ -107,15 +147,9 @@ let wordMap = trainAndEvaluateModel();
 
 function trainAndEvaluateModel(){
 
-    let wordMap = {}; //stores each word's sentiment score, e.g., {"happy": 5, "unhappy": -4}
-    let frequencyMap = {}; //stores each word's frequency i.e. how many tweets each word appears in,
+    let wordMap = createWordMap(trainTweets); //stores each word's sentiment score, e.g., {"happy": 5, "unhappy": -4}
+    let frequencyMap = createFrequencyMap(trainTweets); //stores each word's frequency i.e. how many tweets each word appears in,
                             // e.g., {"happy": 40, "unhappy": 30, "the": 250, "rare": 2}
-
-    //loop over all tweets, and iteratively update the words' sentiment and frequency scores  
-    for (let tweet of trainTweets){
-        updateWordMap(wordMap, tweet.tweet, tweet.label);
-        updateWordFrequency(frequencyMap, tweet.tweet);
-    }
 
     //using wordMap and frequencyMap, predict each tweet in the test set as pro-refugee or anti-refugee 
     let predictedLabels = [];
