@@ -25,9 +25,12 @@ function updateWordMap(wordMap, tweet, tweetLabel){
         let stemmedWord = stemmer(word);
         if (stemmedWord === ""){continue;}
 
-        // TODO: copy and paste your earlier implementation from sentiment-analysis.js here!
-
-
+        // completed TODO
+        if (stemmedWord in wordMap){
+            wordMap[stemmedWord] += tweetLabel;
+        } else{
+            wordMap[stemmedWord] = tweetLabel;
+        }
 
     }
 }
@@ -38,9 +41,10 @@ function updateWordMap(wordMap, tweet, tweetLabel){
 function createWordMap(trainTweets) {
     let wordMap = {};
 
-    // TODO: copy and paste your earlier implementation from sentiment-analysis.js here!
-
-
+    // completed TODO
+    for (let tweet of trainTweets) {
+        updateWordMap(wordMap, tweet.tweet, tweet.label);
+    }
 
     return wordMap;
 }
@@ -60,9 +64,12 @@ function createWordMap(trainTweets) {
  */
 function getUniqueWords(words){
     let uniqueWords = [];
-    // TODO: your code here to build up the array uniqueWords! 
-
-  
+    // completed TODO
+    for (let word of words){
+        if (!uniqueWords.includes(word)){
+            uniqueWords.push(word); //add word if not already in uniqueWords
+        }
+    }
     return uniqueWords;
 }
 
@@ -83,14 +90,17 @@ function getUniqueWords(words){
  */
 function updateWordFrequency(frequencyMap, tweet){
     let tweetWords = tweet.toLowerCase().split(" ");
-    uniqueWords = getUniqueWords(tweetWords); // calls your helper function from above!
+    let uniqueWords = getUniqueWords(tweetWords); // calls your helper function from above!
     for (let word of uniqueWords){
         let stemmedWord = stemmer(word);
         if (stemmedWord === ""){continue;}
 
-         //TODO: write your code to update frequencyMap here!
-        
-
+         // completed TODO
+        if (stemmedWord in frequencyMap){
+            frequencyMap[stemmedWord]++;
+        } else{
+            frequencyMap[stemmedWord] = 1;
+        }
     }
 }
 
@@ -110,7 +120,10 @@ function updateWordFrequency(frequencyMap, tweet){
 function createFrequencyMap(trainTweets) {
     let frequencyMap = {};
 
-    /* TODO: loop over all tweets, and iteratively update the words' frequencies */
+    /* completed TODO */
+    for (let tweet of trainTweets) {
+        updateWordFrequency(frequencyMap, tweet.tweet, tweet.label);
+    }
 
     return frequencyMap;
 }
@@ -137,8 +150,23 @@ function predictTweet(tweet, wordMap, frequencyMap, numTweets){
     let tweetWords = tweet.toLowerCase().split(" ");
     let tweetSentimentScore = 0;
     
-    //TODO: delete the line below and write your code in here!
-    return 0;
+    // completed TODO
+    for (let word of tweetWords){
+        let stemmedWord = stemmer(word);
+        if (stemmedWord === ""){continue;}
+
+        if (stemmedWord in wordMap){
+            // proportion of tweets that the word appears in 
+            let word_frequency = frequencyMap[stemmedWord] / numTweets;
+
+            // weight the word's sentiment score by 1 / proportion, so more frequent words are weighted less
+            tweetSentimentScore += wordMap[stemmedWord] * (1 / word_frequency);
+        }
+    }
+    if (tweetSentimentScore > 0){
+        return 1; // predict tweet has pro-refugee sentiment
+    }
+    return -1; //predict tweet has anti-refugee sentiment
 }
 
 /* no need to modify anything beyond this point! */
